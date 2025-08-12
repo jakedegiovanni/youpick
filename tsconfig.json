@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "lib": ["ESNext"],
+
+    "strict": true,
+    
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+
+    "erasableSyntaxOnly": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    "resolveJsonModule": true,
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "rewriteRelativeImportExtensions": true,
+    "allowImportingTsExtensions": true,
+
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+    
+    "outDir": "./dist"
+  },
+  "exclude": ["node_modules", "dist"]
+}
