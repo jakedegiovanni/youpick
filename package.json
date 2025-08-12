@@ -7,7 +7,7 @@
     "start": "node dist/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier .",
+    "format": "prettier . --check",
     "format:fix": "prettier . --write",
     "prepare": "husky"
   },
