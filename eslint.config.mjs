@@ -3,6 +3,7 @@ import globals from 'globals';
 import { globalIgnores } from 'eslint/config';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -11,6 +12,9 @@ export default tseslint.config(
   globalIgnores(['**/dist/']),
   {
     files: ['**/*.{ts,tsx}'],
+    plugins: {
+      'simple-import-sort': simpleImportSort,
+    },
     languageOptions: {
       globals: {
         ...globals.node,
@@ -29,6 +33,8 @@ export default tseslint.config(
       '@typescript-eslint/require-await': 'error',
       '@typescript-eslint/return-await': ['error', 'always'],
       '@typescript-eslint/no-import-type-side-effects': 'error',
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
     },
   },
   eslintConfigPrettier,
