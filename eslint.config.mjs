@@ -35,6 +35,14 @@ export default tseslint.config(
       '@typescript-eslint/no-import-type-side-effects': 'error',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
+      '@typescript-eslint/switch-exhaustiveness-check': [
+        'error',
+        {
+          allowDefaultCaseForExhaustiveSwitch: true,
+          considerDefaultExhaustiveForUnions: true,
+          requireDefaultForNonUnion: false,
+        },
+      ],
     },
   },
   eslintConfigPrettier,
