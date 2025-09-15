@@ -1,28 +1,32 @@
-import eslint from '@eslint/js';
+import js from '@eslint/js';
 import globals from 'globals';
-import { globalIgnores } from 'eslint/config';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import { globalIgnores } from 'eslint/config';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
-export default tseslint.config(
-  eslint.configs.recommended,
-  tseslint.configs.recommended,
-  tseslint.configs.stylistic,
-  globalIgnores(['**/dist/']),
+export default tseslint.config([
+  globalIgnores(['dist']),
   {
     files: ['**/*.{ts,tsx}'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      tseslint.configs.stylistic,
+      reactHooks.configs['recommended-latest'],
+      reactRefresh.configs.vite,
+    ],
     plugins: {
       'simple-import-sort': simpleImportSort,
     },
     languageOptions: {
-      globals: {
-        ...globals.node,
-      },
       ecmaVersion: 'latest',
       sourceType: 'module',
+      globals: globals.browser,
       parserOptions: {
-        projectService: true,
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
         tsconfigRootDir: import.meta.dirname,
       },
     },
@@ -43,6 +47,10 @@ export default tseslint.config(
           requireDefaultForNonUnion: false,
         },
       ],
+      'no-restricted-exports': [
+        'error',
+        { restrictDefaultExports: { direct: true } },
+      ],
     },
   },
   eslintConfigPrettier,
@@ -51,4 +59,4 @@ export default tseslint.config(
       curly: ['error', 'all'],
     },
   },
-);
+]);
